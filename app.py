@@ -125,7 +125,7 @@ with tab_workflow:
     st.markdown("Each step expands to show details and outputs produced during the research pipeline.")
 
     # Step 1
-    with st.expander("Step 1 — Derived dataset (ds1.csv)"):
+    with st.expander("Step 1 — Derived dataset)"):
         st.markdown("**From Primary MySQL Database** we created a derived dataset `ds1.csv` containing IDE behavioral features and the target `result` (pass/fail).")
         st.markdown("Example schema / columns included:")
         st.code("""student_id, total_easy_exercise, completed_easy_exercise, easy_exercise_completion_time, easy_exercise_attempt, easy_exercise_syntax_error, ... , which_time_span, result""", language="csv")
@@ -133,7 +133,7 @@ with tab_workflow:
 
     # Step 2
     with st.expander("Step 2 — Training baseline models (code0-no graphs.py & code0-graphs.py)"):
-        st.markdown("**Models trained on `ds1.csv`:**")
+        st.markdown("**Models trained on Dataset:**")
         st.write("- LogisticRegression  - RandomForest  - GradientBoosting  - MLP  - SVM  - (XGBoost also tested)")
         st.markdown("**Model definitions** (example):")
         st.code("""
@@ -167,8 +167,8 @@ Classification Report:
         st.markdown("Repeat for RandomForest, GradientBoosting, MLP, SVM, XGBoost. See full 'Model Results' tab for consolidated table and exports.")
 
     # Step 3
-    with st.expander("Step 3 — Feature engineering (code1.py)"):
-        st.markdown("Feature engineering steps used to create `engineered_ds1.csv`:")
+    with st.expander("Step 3 — Feature engineering)"):
+        st.markdown("Feature engineering steps used to create Engineered Dataset:")
         st.code("""
 # examples from code1.py / code0.py
 df["easy_completion_ratio"] = df["completed_easy_exercise"] / df["total_easy_exercise"]
@@ -180,12 +180,12 @@ df["overall_efficiency"] = df["total_completed_all"] / (df["total_attempt_all"] 
         st.success("Saved engineered dataset to `engineered_ds1.csv`")
 
     # Step 4.1
-    with st.expander("Step 4.1 — Test on engineered dataset (code2-engineered-dataset.py)"):
+    with st.expander("Step 4.1 — Test on engineered dataset"):
         st.markdown("Tried models on `engineered_ds1.csv` to measure improvement from feature engineering. Outputs guided stacking decisions.")
         st.info("Outcome: further tuning improved stability; stacking chosen to combine strengths of base learners.")
 
     # Step 4.2
-    with st.expander("Step 4.2 — Stacking model (code2.py)"):
+    with st.expander("Step 4.2 — Stacking model"):
         st.markdown("**Stacked models used as base learners:** RandomForest, GradientBoosting, MLP, SVM, XGBoost")
         st.markdown("**Training output (stacking model)**")
         st.code("""
@@ -213,7 +213,7 @@ Stacking model trained successfully!
         st.success("Stacking model metrics: F1=0.857, ROC_AUC=0.907")
 
     # Step 5
-    with st.expander("Step 5 — Visualization & Graphs (code3.py)"):
+    with st.expander("Step 5 — Visualization & Graphs"):
         st.markdown("Graphs generated from training/validation runs: confusion matrices, ROC curves, feature importances, and metric trends.")
         st.code("""
 ⏳ Training model ...
@@ -390,4 +390,5 @@ with tab_predict:
 # -------------------------
 # End of app
 # -------------------------
+
 
