@@ -256,17 +256,18 @@ if page == "ML Prediction App":
 
     
 
-    df = pd.DataFrame([x])
+        df = pd.DataFrame([x])
+    
+        # numeric → pass/fail mapping
+        prediction_numeric = model.predict(df)[0]
+        label_mapping = {0: "Fail", 1: "Pass"}
+        prediction_label = label_mapping[prediction_numeric]
+    
+        st.markdown(
+            f"<div class='prediction-box'>Prediction: {prediction_label}</div>",
+            unsafe_allow_html=True
+        )
 
-    # numeric → pass/fail mapping
-    prediction_numeric = model.predict(df)[0]
-    label_mapping = {0: "Fail", 1: "Pass"}
-    prediction_label = label_mapping[prediction_numeric]
-
-    st.markdown(
-        f"<div class='prediction-box'>Prediction: {prediction_label}</div>",
-        unsafe_allow_html=True
-    )
 
 
 
