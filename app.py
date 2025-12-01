@@ -107,7 +107,7 @@ Our system predicts issues weeks earlier — enabling intervention.
     from PIL import Image
 
     graph_files = {
-        "Class Distribution (Pass vs Fail)": "/mnt/data/Class Distribution (Pass vs Fail).png",
+        "Class Distribution (Pass vs Fail)": "Class Distribution (Pass vs Fail).png",
         "Confusion Matrix": "/mnt/data/Confusion Matrix.png",
         "Learning Curve": "/mnt/data/Learning Curve.png",
         "Precision–Recall Curve": "/mnt/data/Precision-Recall Curve.png",
@@ -231,6 +231,7 @@ if page == "ML Prediction App":
 
         st.markdown(f"<div class='prediction-box'>Prediction: {prediction}</div>", unsafe_allow_html=True)
         st.markdown(f"<div class='prediction-box'>Success Probability: {probability:.2f}</div>", unsafe_allow_html=True)
+
 
 
 
