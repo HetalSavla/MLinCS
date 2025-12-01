@@ -221,17 +221,8 @@ Step-5: Visualization (code3.py)
 
     st.markdown("---")
 
-    # -----------------------------
-    # Footer
-    # -----------------------------
-    st.markdown("""
-### 🔍 Ready to Explore?
-Discover how AI-powered early warning systems transform student success.
 
-**© 2025 – RBS | Academic Research Use Only**  
-AI-Powered Early Warning Framework for Computer Education  
-Made in Bolt
-""")
 
 # Call the function inside main page
 research_overview_section()
+
