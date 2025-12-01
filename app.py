@@ -1,142 +1,147 @@
 import streamlit as st
+import pandas as pd
 import joblib
-import numpy as np
 
-# ---------------------- PAGE CONFIG -----------------------
-st.set_page_config(
-    page_title="ML Student Performance Predictor",
-    layout="centered",
-    page_icon="🚀"
-)
-
-# ---------------------- CUSTOM CSS -------------------------
-st.markdown("""
-<style>
-
-body {
-    background: linear-gradient(135deg, #1a1a2e, #0f3460);
-    font-family: 'Poppins', sans-serif;
-}
-
-h1, h2, h3 {
-    color: #FFFFFF;
-    text-shadow: 0px 0px 10px #00eaff;
-}
-
-.stApp {
-    background: transparent;
-}
-
-.card {
-    background: rgba(255,255,255,0.12);
-    padding: 25px;
-    border-radius: 16px;
-    box-shadow: 0 8px 25px rgba(0,0,0,0.25);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255,255,255,0.2);
-}
-
-input, select {
-    border-radius: 10px !important;
-}
-
-.stButton>button {
-    background: linear-gradient(135deg, #ff512f, #dd2476);
-    color: white;
-    padding: 12px 25px;
-    font-size: 18px;
-    border-radius: 10px;
-    border: none;
-    transition: 0.3s;
-}
-
-.stButton>button:hover {
-    background: linear-gradient(135deg, #dd2476, #ff512f);
-    transform: scale(1.05);
-}
-
-.pred-box {
-    padding: 18px;
-    border-radius: 12px;
-    font-size: 22px;
-    color: white;
-    text-align: center;
-    background: linear-gradient(135deg, #00b09b, #96c93d);
-    box-shadow: 0px 0px 20px rgba(0,255,200,0.4);
-}
-
-</style>
-""", unsafe_allow_html=True)
-
-# ---------------------- HEADER -----------------------------
-st.markdown("<h1 style='text-align:center;'>🚀 Student Performance Prediction</h1>", unsafe_allow_html=True)
-st.markdown("<p style='text-align:center; color:#cce7ff;'>AI-powered prediction system using ML model</p>", unsafe_allow_html=True)
-
-# ---------------------- LOAD MODEL -------------------------
+# Load model
 model = joblib.load("stacking_model.pkl")
 
-# ---------------------- INPUT CARD -------------------------
-st.markdown('<div class="card">', unsafe_allow_html=True)
-st.subheader("Enter Details")
+# ------------------- Modern UI Styles -------------------
+st.markdown("""
+    <style>
+        /* Background gradient */
+        .stApp {
+            background: linear-gradient(135deg, #eef2f3, #8e9eab);
+        }
 
-col1, col2, col3 = st.columns(3)
+        /* Card style */
+        .input-card {
+            background: rgba(255,255,255,0.6);
+            padding: 25px;
+            border-radius: 18px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            backdrop-filter: blur(8px);
+        }
 
-# ---------------------- EASY (COL 1) -----------------------
-with col1:
-    total_easy_exercise = st.number_input("Total Easy", min_value=0, step=1)
-    completed_easy_exercise = st.number_input("Completed Easy", min_value=0, step=1)
-    easy_exercise_completion_time = st.number_input("Easy Time", min_value=0, step=1)
-    easy_exercise_attempt = st.number_input("Easy Attempts", min_value=0, step=1)
-    easy_exercise_syntax_error = st.number_input("Easy Syntax Errors", min_value=0, step=1)
+        /* Title style */
+        .title {
+            font-size: 42px;
+            font-weight: 700;
+            text-align: center;
+            color: #222;
+            margin-bottom: 15px;
+        }
 
-# ---------------------- MEDIUM (COL 2) ---------------------
-with col2:
-    total_medium_exercise = st.number_input("Total Medium", min_value=0, step=1)
-    completed_medium_exercise = st.number_input("Completed Medium", min_value=0, step=1)
-    medium_exercise_completion_time = st.number_input("Medium Time", min_value=0, step=1)
-    medium_exercise_attempt = st.number_input("Medium Attempts", min_value=0, step=1)
-    medium_exercise_syntax_error = st.number_input("Medium Syntax Errors", min_value=0, step=1)
+        /* Prediction box */
+        .prediction-box {
+            background: #ffffffdd;
+            padding: 22px;
+            border-radius: 16px;
+            font-size: 20px;
+            font-weight: 600;
+            text-align: center;
+            border-left: 7px solid #6a11cb;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            margin-top: 15px;
+        }
+    </style>
+""", unsafe_allow_html=True)
 
-# ---------------------- HARD (COL 3) -----------------------
-with col3:
-    total_hard_exercise = st.number_input("Total Hard", min_value=0, step=1)
-    completed_hard_exercise = st.number_input("Completed Hard", min_value=0, step=1)
-    hard_exercise_completion_time = st.number_input("Hard Time", min_value=0, step=1)
-    hard_exercise_attempt = st.number_input("Hard Attempts", min_value=0, step=1)
-    hard_exercise_syntax_error = st.number_input("Hard Syntax Errors", min_value=0, step=1)
+# ------------------- Title -------------------
+st.markdown("<div class='title'>Student Performance Prediction</div>", unsafe_allow_html=True)
 
-st.markdown('</div>', unsafe_allow_html=True)
+# ------------------- Input Form Layout -------------------
+with st.container():
+    st.markdown("<div class='input-card'>", unsafe_allow_html=True)
 
-# ---------------------- PREDICT BUTTON ----------------------
-if st.button("Predict Result"):
-    features = np.array([[
+    col1, col2, col3 = st.columns(3)
 
-        # EASY
-        total_easy_exercise,
-        completed_easy_exercise,
-        easy_exercise_completion_time,
-        easy_exercise_attempt,
-        easy_exercise_syntax_error,
+    # --- Easy ---
+    with col1:
+        st.subheader("Easy Level")
+        total_easy_exercise = st.number_input("Total easy exercise", min_value=0, step=1)
+        completed_easy_exercise = st.number_input("Completed easy exercise", min_value=0, step=1)
+        easy_exercise_completion_time = st.number_input("Completion time", min_value=0, step=1)
+        easy_exercise_attempt = st.number_input("Attempts", min_value=0, step=1)
+        easy_exercise_syntax_error = st.number_input("Syntax errors", min_value=0, step=1)
 
-        # MEDIUM
-        total_medium_exercise,
-        completed_medium_exercise,
-        medium_exercise_completion_time,
-        medium_exercise_attempt,
-        medium_exercise_syntax_error,
+    # --- Medium ---
+    with col2:
+        st.subheader("Medium Level")
+        total_medium_exercise = st.number_input("Total medium exercise", min_value=0, step=1)
+        completed_medium_exercise = st.number_input("Completed medium exercise", min_value=0, step=1)
+        medium_exercise_completion_time = st.number_input("Completion time", min_value=0, step=1)
+        medium_exercise_attempt = st.number_input("Attempts", min_value=0, step=1)
+        medium_exercise_syntax_error = st.number_input("Syntax errors", min_value=0, step=1)
 
-        # HARD
-        total_hard_exercise,
-        completed_hard_exercise,
-        hard_exercise_completion_time,
-        hard_exercise_attempt,
-        hard_exercise_syntax_error
+    # --- Hard ---
+    with col3:
+        st.subheader("Hard Level")
+        total_hard_exercise = st.number_input("Total hard exercise", min_value=0, step=1)
+        completed_hard_exercise = st.number_input("Completed hard exercise", min_value=0, step=1)
+        hard_exercise_completion_time = st.number_input("Completion time", min_value=0, step=1)
+        hard_exercise_attempt = st.number_input("Attempts", min_value=0, step=1)
+        hard_exercise_syntax_error = st.number_input("Syntax errors", min_value=0, step=1)
 
-    ]])
+    # Time span (stylish)
+    st.subheader("Time Span")
+    time_span_label = st.selectbox("Select Time Span", ["Early", "Mid", "End"])
+    time_span_mapping = {"Early": 1, "Mid": 2, "End": 3}
+    which_time_span_encoded = time_span_mapping[time_span_label]
 
-    prediction = model.predict(features)[0]
+    st.markdown("</div>", unsafe_allow_html=True)
 
+# ------------------- Predict Button -------------------
+predict_btn = st.button("🔮 Predict Performance", use_container_width=True)
+
+# ------------------- Prediction Logic -------------------
+if predict_btn:
+    x = {
+        "total_easy_exercise": total_easy_exercise,
+        "completed_easy_exercise": completed_easy_exercise,
+        "easy_exercise_completion_time": easy_exercise_completion_time,
+        "easy_exercise_attempt": easy_exercise_attempt,
+        "easy_exercise_syntax_error": easy_exercise_syntax_error,
+        "total_medium_exercise": total_medium_exercise,
+        "completed_medium_exercise": completed_medium_exercise,
+        "medium_exercise_completion_time": medium_exercise_completion_time,
+        "medium_exercise_attempt": medium_exercise_attempt,
+        "medium_exercise_syntax_error": medium_exercise_syntax_error,
+        "total_hard_exercise": total_hard_exercise,
+        "completed_hard_exercise": completed_hard_exercise,
+        "hard_exercise_completion_time": hard_exercise_completion_time,
+        "hard_exercise_attempt": hard_exercise_attempt,
+        "hard_exercise_syntax_error": hard_exercise_syntax_error,
+        "easy_completion_ratio": completed_easy_exercise / total_easy_exercise if total_easy_exercise else 0,
+        "medium_completion_ratio": completed_medium_exercise / total_medium_exercise if total_medium_exercise else 0,
+        "hard_completion_ratio": completed_hard_exercise / total_hard_exercise if total_hard_exercise else 0,
+        "easy_effort_efficiency": easy_exercise_completion_time / completed_easy_exercise + 1 if completed_easy_exercise else 1,
+        "medium_effort_efficiency": medium_exercise_completion_time / completed_medium_exercise + 1 if completed_medium_exercise else 1,
+        "hard_effort_efficiency": hard_exercise_completion_time / completed_hard_exercise + 1 if completed_hard_exercise else 1,
+        "easy_error_rate": easy_exercise_syntax_error / easy_exercise_attempt + 1 if easy_exercise_attempt else 1,
+        "medium_error_rate": medium_exercise_syntax_error / medium_exercise_attempt + 1 if medium_exercise_attempt else 1,
+        "hard_error_rate": hard_exercise_syntax_error / hard_exercise_attempt + 1 if hard_exercise_attempt else 1,
+        "completed_weighted_score": completed_easy_exercise * 1 + completed_medium_exercise * 2 + completed_hard_exercise * 3,
+        "attempts_weighted_score": easy_exercise_attempt * 1 + medium_exercise_attempt * 2 + hard_exercise_attempt * 3,
+        "syntax_error_weighted_score": easy_exercise_syntax_error * 1 + medium_exercise_syntax_error * 2 + hard_exercise_syntax_error * 3,
+        "which_time_span_encoded": which_time_span_encoded,
+        "total_completed_all": completed_easy_exercise + completed_medium_exercise + completed_hard_exercise,
+        "total_attempt_all": easy_exercise_attempt + medium_exercise_attempt + hard_exercise_attempt,
+        "total_error_all": easy_exercise_syntax_error + medium_exercise_syntax_error + hard_exercise_syntax_error,
+        "overall_efficiency": (completed_easy_exercise + completed_medium_exercise + completed_hard_exercise) /
+                              (easy_exercise_attempt + medium_exercise_attempt + hard_exercise_attempt) + 1
+                              if (easy_exercise_attempt + medium_exercise_attempt + hard_exercise_attempt) else 1,
+    }
+
+    df = pd.DataFrame([x])
+    prediction = model.predict(df)[0]
+    probability = model.predict_proba(df)[0][1]
+
+    # ------------------- Output UI -------------------
     st.markdown(
-        f"<div class='pred-box'>Predicted Result: <strong>{prediction}</strong></div>",
+        f"<div class='prediction-box'>Prediction: {prediction}</div>",
+        unsafe_allow_html=True
+    )
+    st.markdown(
+        f"<div class='prediction-box'>Success Probability: {probability:.2f}</div>",
         unsafe_allow_html=True
     )
