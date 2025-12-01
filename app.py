@@ -8,7 +8,7 @@ model = joblib.load("stacking_model.pkl")
 st.markdown("""
     <style>
         .stApp {
-           background: rgba(122, 191, 173,0.6);
+          background: linear-gradient(#7abfad, #eef2f3, #8e9eab);
         }
         .input-card {
             background: rgba(122, 191, 173,0.6);
@@ -129,6 +129,7 @@ if predict_btn:
 
     st.markdown(f"<div class='prediction-box'>Prediction: {prediction}</div>", unsafe_allow_html=True)
     st.markdown(f"<div class='prediction-box'>Success Probability: {probability:.2f}</div>", unsafe_allow_html=True)
+
 
 
 
