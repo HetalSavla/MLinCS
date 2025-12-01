@@ -2,37 +2,99 @@ import streamlit as st
 import pandas as pd
 import joblib
 
+# Load model
 model = joblib.load("stacking_model.pkl")
 
-st.title("Student Performance Prediction")
+# ------------------- Modern UI Styles -------------------
+st.markdown("""
+    <style>
+        /* Background gradient */
+        .stApp {
+            background: linear-gradient(135deg, #eef2f3, #8e9eab);
+        }
 
-total_easy_exercise = st.number_input("Total easy exercise", min_value=0, step=1)
-completed_easy_exercise = st.number_input("Completed easy exercise", min_value=0, step=1)
-easy_exercise_completion_time = st.number_input("Easy exercise completion time", min_value=0, step=1)
-easy_exercise_attempt = st.number_input("Easy exercise attempt", min_value=0, step=1)
-easy_exercise_syntax_error = st.number_input("Easy exercise syntax error", min_value=0, step=1)
+        /* Card style */
+        .input-card {
+            background: rgba(255,255,255,0.6);
+            padding: 25px;
+            border-radius: 18px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            backdrop-filter: blur(8px);
+        }
 
-total_medium_exercise = st.number_input("Total medium exercise", min_value=0, step=1)
-completed_medium_exercise = st.number_input("Completed medium exercise", min_value=0, step=1)
-medium_exercise_completion_time = st.number_input("Medium exercise completion time", min_value=0, step=1)
-medium_exercise_attempt = st.number_input("Medium exercise attempt", min_value=0, step=1)
-medium_exercise_syntax_error = st.number_input("Medium exercise syntax error", min_value=0, step=1)
+        /* Title style */
+        .title {
+            font-size: 42px;
+            font-weight: 700;
+            text-align: center;
+            color: #222;
+            margin-bottom: 15px;
+        }
 
-total_hard_exercise = st.number_input("Total hard exercise", min_value=0, step=1)
-completed_hard_exercise = st.number_input("Completed hard exercise", min_value=0, step=1)
-hard_exercise_completion_time = st.number_input("Hard exercise completion time", min_value=0, step=1)
-hard_exercise_attempt = st.number_input("Hard exercise attempt", min_value=0, step=1)
-hard_exercise_syntax_error = st.number_input("Hard exercise syntax error", min_value=0, step=1)
+        /* Prediction box */
+        .prediction-box {
+            background: #ffffffdd;
+            padding: 22px;
+            border-radius: 16px;
+            font-size: 20px;
+            font-weight: 600;
+            text-align: center;
+            border-left: 7px solid #6a11cb;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            margin-top: 15px;
+        }
+    </style>
+""", unsafe_allow_html=True)
 
-# which_time_span_encoded = st.selectbox("Time Span", [1, 2, 3])
+# ------------------- Title -------------------
+st.markdown("<div class='title'>Student Performance Prediction</div>", unsafe_allow_html=True)
 
-# --- UPDATED TIME SPAN INPUT ---
-time_span_label = st.selectbox("Time Span", ["Early", "Mid", "End"])
-time_span_mapping = {"Early": 1, "Mid": 2, "End": 3}
-which_time_span_encoded = time_span_mapping[time_span_label]
-# --------------------------------
+# ------------------- Input Form Layout -------------------
+with st.container():
+    st.markdown("<div class='input-card'>", unsafe_allow_html=True)
 
-if st.button("Predict"):
+    col1, col2, col3 = st.columns(3)
+
+    # --- Easy ---
+    with col1:
+        st.subheader("Easy Level")
+        total_easy_exercise = st.number_input("Total easy exercise", min_value=0, step=1)
+        completed_easy_exercise = st.number_input("Completed easy exercise", min_value=0, step=1)
+        easy_exercise_completion_time = st.number_input("Completion time", min_value=0, step=1)
+        easy_exercise_attempt = st.number_input("Attempts", min_value=0, step=1)
+        easy_exercise_syntax_error = st.number_input("Syntax errors", min_value=0, step=1)
+
+    # --- Medium ---
+    with col2:
+        st.subheader("Medium Level")
+        total_medium_exercise = st.number_input("Total medium exercise", min_value=0, step=1)
+        completed_medium_exercise = st.number_input("Completed medium exercise", min_value=0, step=1)
+        medium_exercise_completion_time = st.number_input("Completion time", min_value=0, step=1)
+        medium_exercise_attempt = st.number_input("Attempts", min_value=0, step=1)
+        medium_exercise_syntax_error = st.number_input("Syntax errors", min_value=0, step=1)
+
+    # --- Hard ---
+    with col3:
+        st.subheader("Hard Level")
+        total_hard_exercise = st.number_input("Total hard exercise", min_value=0, step=1)
+        completed_hard_exercise = st.number_input("Completed hard exercise", min_value=0, step=1)
+        hard_exercise_completion_time = st.number_input("Completion time", min_value=0, step=1)
+        hard_exercise_attempt = st.number_input("Attempts", min_value=0, step=1)
+        hard_exercise_syntax_error = st.number_input("Syntax errors", min_value=0, step=1)
+
+    # Time span (stylish)
+    st.subheader("Time Span")
+    time_span_label = st.selectbox("Select Time Span", ["Early", "Mid", "End"])
+    time_span_mapping = {"Early": 1, "Mid": 2, "End": 3}
+    which_time_span_encoded = time_span_mapping[time_span_label]
+
+    st.markdown("</div>", unsafe_allow_html=True)
+
+# ------------------- Predict Button -------------------
+predict_btn = st.button("🔮 Predict Performance", use_container_width=True)
+
+# ------------------- Prediction Logic -------------------
+if predict_btn:
     x = {
         "total_easy_exercise": total_easy_exercise,
         "completed_easy_exercise": completed_easy_exercise,
@@ -65,8 +127,8 @@ if st.button("Predict"):
         "total_completed_all": completed_easy_exercise + completed_medium_exercise + completed_hard_exercise,
         "total_attempt_all": easy_exercise_attempt + medium_exercise_attempt + hard_exercise_attempt,
         "total_error_all": easy_exercise_syntax_error + medium_exercise_syntax_error + hard_exercise_syntax_error,
-        "overall_efficiency": (completed_easy_exercise + completed_medium_exercise + completed_hard_exercise) / 
-                              (easy_exercise_attempt + medium_exercise_attempt + hard_exercise_attempt) + 1 
+        "overall_efficiency": (completed_easy_exercise + completed_medium_exercise + completed_hard_exercise) /
+                              (easy_exercise_attempt + medium_exercise_attempt + hard_exercise_attempt) + 1
                               if (easy_exercise_attempt + medium_exercise_attempt + hard_exercise_attempt) else 1,
     }
 
@@ -74,5 +136,12 @@ if st.button("Predict"):
     prediction = model.predict(df)[0]
     probability = model.predict_proba(df)[0][1]
 
-    st.write("### Prediction:", prediction)
-    st.write("### Probability:", probability)
+    # ------------------- Output UI -------------------
+    st.markdown(
+        f"<div class='prediction-box'>Prediction: {prediction}</div>",
+        unsafe_allow_html=True
+    )
+    st.markdown(
+        f"<div class='prediction-box'>Success Probability: {probability:.2f}</div>",
+        unsafe_allow_html=True
+    )
