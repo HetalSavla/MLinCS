@@ -141,9 +141,9 @@ st.write("""
 5. **Lack of Weighted Effort Metrics:** Earlier studies did not include difficulty-weighted scoring, which captures effort and challenge levels more accurately.
 """)
 
-    st.markdown("---")
-    st.header("🎯 Expected Outcome")
-    st.write("""
+st.markdown("---")
+st.header("🎯 Expected Outcome")
+st.write("""
 - Automatic early alerts  
 - Improved pass percentage  
 - Teacher-friendly dashboard  
@@ -247,6 +247,7 @@ if page == "ML Prediction App":
 
         st.markdown(f"<div class='prediction-box'>Prediction: {prediction}</div>", unsafe_allow_html=True)
         st.markdown(f"<div class='prediction-box'>Success Probability: {probability:.2f}</div>", unsafe_allow_html=True)
+
 
 
 
