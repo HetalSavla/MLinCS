@@ -81,41 +81,62 @@ st.subheader("Enter Details")
 
 col1, col2, col3 = st.columns(3)
 
+# ---------------------- EASY (COL 1) -----------------------
 with col1:
-    total_easy_exercise = st.number_input("Total easy exercises", min_value=0, step=1, key="tee")
-    completed_easy_exercise = st.number_input("Completed easy exercises", min_value=0, step=1, key="cee")
-    easy_exercise_completion_time = st.number_input("Easy completion time", min_value=0, step=1, key="eect")
-    easy_exercise_attempt = st.number_input("Easy attempts", min_value=0, step=1, key="eea")
-    easy_exercise_syntax_error = st.number_input("Easy syntax errors", min_value=0, step=1, key="eese")
+    total_easy_exercise = st.number_input("Total Easy", min_value=0, step=1)
+    completed_easy_exercise = st.number_input("Completed Easy", min_value=0, step=1)
+    easy_exercise_completion_time = st.number_input("Easy Time", min_value=0, step=1)
+    easy_exercise_attempt = st.number_input("Easy Attempts", min_value=0, step=1)
+    easy_exercise_syntax_error = st.number_input("Easy Syntax Errors", min_value=0, step=1)
 
+# ---------------------- MEDIUM (COL 2) ---------------------
 with col2:
-    total_medium_exercise = st.number_input("Total medium exercises", min_value=0, step=1, key="tme")
-    completed_medium_exercise = st.number_input("Completed medium exercises", min_value=0, step=1, key="cme")
-    medium_exercise_completion_time = st.number_input("Medium completion time", min_value=0, step=1, key="mect")
-    medium_exercise_attempt = st.number_input("Medium attempts", min_value=0, step=1, key="mea")
-    medium_exercise_syntax_error = st.number_input("Medium syntax errors", min_value=0, step=1, key="mese")
+    total_medium_exercise = st.number_input("Total Medium", min_value=0, step=1)
+    completed_medium_exercise = st.number_input("Completed Medium", min_value=0, step=1)
+    medium_exercise_completion_time = st.number_input("Medium Time", min_value=0, step=1)
+    medium_exercise_attempt = st.number_input("Medium Attempts", min_value=0, step=1)
+    medium_exercise_syntax_error = st.number_input("Medium Syntax Errors", min_value=0, step=1)
 
+# ---------------------- HARD (COL 3) -----------------------
 with col3:
-    total_hard_exercise = st.number_input("Total hard exercises", min_value=0, step=1, key="tme")
-    completed_hard_exercise = st.number_input("Completed hard exercises", min_value=0, step=1, key="cme")
-    hard_exercise_completion_time = st.number_input("Hard completion time", min_value=0, step=1, key="mect")
-    hard_exercise_attempt = st.number_input("Hard attempts", min_value=0, step=1, key="mea")
-    hard_exercise_syntax_error = st.number_input("Hard syntax errors", min_value=0, step=1, key="mese")  
+    total_hard_exercise = st.number_input("Total Hard", min_value=0, step=1)
+    completed_hard_exercise = st.number_input("Completed Hard", min_value=0, step=1)
+    hard_exercise_completion_time = st.number_input("Hard Time", min_value=0, step=1)
+    hard_exercise_attempt = st.number_input("Hard Attempts", min_value=0, step=1)
+    hard_exercise_syntax_error = st.number_input("Hard Syntax Errors", min_value=0, step=1)
 
 st.markdown('</div>', unsafe_allow_html=True)
 
 # ---------------------- PREDICT BUTTON ----------------------
 if st.button("Predict Result"):
     features = np.array([[
-        total_easy_exercise, completed_easy_exercise, easy_exercise_completion_time,
-        easy_exercise_attempt, easy_exercise_syntax_error,
-        total_medium_exercise, completed_medium_exercise, medium_exercise_completion_time,
-        medium_exercise_attempt, medium_exercise_syntax_error,
-        total_hard_exercise, completed_hard_exercise, hard_exercise_completion_time,
-        hard_exercise_attempt, hard_exercise_syntax_error
+
+        # EASY
+        total_easy_exercise,
+        completed_easy_exercise,
+        easy_exercise_completion_time,
+        easy_exercise_attempt,
+        easy_exercise_syntax_error,
+
+        # MEDIUM
+        total_medium_exercise,
+        completed_medium_exercise,
+        medium_exercise_completion_time,
+        medium_exercise_attempt,
+        medium_exercise_syntax_error,
+
+        # HARD
+        total_hard_exercise,
+        completed_hard_exercise,
+        hard_exercise_completion_time,
+        hard_exercise_attempt,
+        hard_exercise_syntax_error
+
     ]])
 
     prediction = model.predict(features)[0]
 
-    st.markdown(f"<div class='pred-box'>Predicted Result: <strong>{prediction}</strong></div>", unsafe_allow_html=True)
-
+    st.markdown(
+        f"<div class='pred-box'>Predicted Result: <strong>{prediction}</strong></div>",
+        unsafe_allow_html=True
+    )
