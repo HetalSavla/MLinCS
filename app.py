@@ -247,3 +247,12 @@ if page == "ML Prediction App":
             "overall_efficiency": (
                 (completed_easy_exercise + completed_medium_exercise + completed_hard_exercise) /
                 (easy_exercise_attempt + medium_exercise_attempt + hard_exercise_attempt) + 1
+            ) if (easy_exercise_attempt + medium_exercise_attempt + hard_exercise_attempt) else 1,
+        }
+
+        df = pd.DataFrame([x])
+        prediction = model.predict(df)[0]
+        probability = model.predict_proba(df)[0][1]
+
+        st.markdown(f"<div class='prediction-box'>Prediction: {prediction}</div>", unsafe_allow_html=True)
+        st.markdown(f"<div class='prediction-box'>Success Probability: {probability:.2f}</div>", unsafe_allow_html=True)
