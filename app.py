@@ -167,7 +167,7 @@ Classification Report:
         st.markdown("Repeat for RandomForest, GradientBoosting, MLP, SVM, XGBoost. See full 'Model Results' tab for consolidated table and exports.")
 
     # Step 3
-    with st.expander("Step 3 — Feature engineering)"):
+    with st.expander("Step 3 — Feature engineering"):
         st.markdown("Feature engineering steps used to create Engineered Dataset:")
         st.code("""
 # examples from code1.py / code0.py
@@ -390,6 +390,7 @@ with tab_predict:
 # -------------------------
 # End of app
 # -------------------------
+
 
 
 
