@@ -100,16 +100,16 @@ Our system predicts issues weeks earlier — enabling intervention.
 
     st.success("Stacking Model F1 Score: **0.857**, ROC AUC: **0.907**")
 
-    st.markdown("---")
-    st.header("🎯 Expected Outcome")
-    st.write("""
-- Automatic early alerts  
-- Improved pass percentage  
-- Teacher-friendly dashboard  
-""")
+#     st.markdown("---")
+#     st.header("🎯 Expected Outcome")
+#     st.write("""
+# - Automatic early alerts  
+# - Improved pass percentage  
+# - Teacher-friendly dashboard  
+# """)
 
-    st.markdown("---")
-    st.markdown("© 2025 – RBS | Academic Research Use Only")
+#     st.markdown("---")
+#     st.markdown("© 2025 – RBS | Academic Research Use Only")
 
 
 # =====================================================================
@@ -206,4 +206,5 @@ if page == "ML Prediction App":
 
         st.markdown(f"<div class='prediction-box'>Prediction: {prediction}</div>", unsafe_allow_html=True)
         st.markdown(f"<div class='prediction-box'>Success Probability: {probability:.2f}</div>", unsafe_allow_html=True)
+
 
