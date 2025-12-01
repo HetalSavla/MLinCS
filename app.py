@@ -57,11 +57,11 @@ page = st.sidebar.radio(
 # =====================================================================
 if page == "Research Overview":
 
-    st.title("🎓 PhD Research Project – Student Performance Prediction System")
+    st.title("PhD Research Project – Student Performance Prediction System")
     st.subheader("AI-Powered Early Warning Framework for Computer Education")
 
     st.markdown("---")
-    st.header("📘 Research Overview")
+    st.header("Research Overview")
 
     st.write("""
 This PhD research project focuses on predicting student performance in C programming 
@@ -87,7 +87,7 @@ Our system predicts issues weeks earlier — enabling intervention.
 """)
 
     st.markdown("---")
-    st.header("🧠 Machine Learning Models Used")
+    st.header("Machine Learning Models Used")
 
     st.write("""
 - Logistic Regression  
@@ -100,7 +100,7 @@ Our system predicts issues weeks earlier — enabling intervention.
 
     # -------------------- STACKING MODEL PERFORMANCE --------------------
     st.markdown("---")
-    st.subheader("📊 Stacking Model Performance")
+    st.subheader("Stacking Model Performance")
 
     st.markdown("""
 - **Accuracy:** 0.818  
@@ -122,7 +122,7 @@ Our system predicts issues weeks earlier — enabling intervention.
 | **Weighted Avg** | 0.82 | 0.82   | 0.82     | 2438    |
 """)
 
-    st.success("✅ Stacking model trained successfully!")
+    st.success("Stacking model trained successfully!")
 
 # st.markdown("---") st.header("Machine Learning Evaluation Graphs") import os from PIL import Image graph_files = { "Class Distribution (Pass vs Fail)": "Class Distribution (Pass vs Fail).png", "Confusion Matrix": "Confusion Matrix.png", "Learning Curve": "Learning Curve.png", "Precision–Recall Curve": "Precision-Recall Curve.png", "ROC Curve with AUC": "ROC Curve with AUC.png", "Top 15 Feature Importances — Random Forest": "Top 15 Feature Importance - Random Forest.png", "Top 15 Feature Importances — XGBoost": "Top 15 Feature Importance - XGBoost.png", } for title, path in graph_files.items(): st.subheader(f"{title}") if os.path.exists(path): img = Image.open(path) st.image(img, use_container_width=True) else: st.error(f"File not found: {path}")
 
@@ -142,7 +142,7 @@ st.write("""
 """)
 
 st.markdown("---")
-st.header("🎯 Expected Outcome")
+st.header("Expected Outcome")
 st.write("""
 - Automatic early alerts  
 - Improved pass percentage  
@@ -212,7 +212,7 @@ if page == "ML Prediction App":
     # ---------------------------------------------------------
     # PREDICT BUTTON
     # ---------------------------------------------------------
-    predict_btn = st.button("🔮 Predict Performance", use_container_width=True)
+    predict_btn = st.button("Predict Performance", use_container_width=True)
 
     if predict_btn:
 
@@ -256,10 +256,11 @@ if page == "ML Prediction App":
 
         df = pd.DataFrame([x])
         prediction = model.predict(df)[0]
-        probability = model.predict_proba(df)[0][1]
+        # probability = model.predict_proba(df)[0][1]
 
         st.markdown(f"<div class='prediction-box'>Prediction: {prediction}</div>", unsafe_allow_html=True)
-        st.markdown(f"<div class='prediction-box'>Success Probability: {probability:.2f}</div>", unsafe_allow_html=True)
+        # st.markdown(f"<div class='prediction-box'>Success Probability: {probability:.2f}</div>", unsafe_allow_html=True)
+
 
 
 
