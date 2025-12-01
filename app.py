@@ -79,7 +79,7 @@ model = joblib.load("stacking_model.pkl")
 st.markdown('<div class="card">', unsafe_allow_html=True)
 st.subheader("Enter Details")
 
-col1, col2 = st.columns(2)
+col1, col2, col3 = st.columns(3)
 
 with col1:
     total_easy_exercise = st.number_input("Total easy exercises", min_value=0, step=1, key="tee")
@@ -118,3 +118,4 @@ if st.button("Predict Result"):
     prediction = model.predict(features)[0]
 
     st.markdown(f"<div class='pred-box'>Predicted Result: <strong>{prediction}</strong></div>", unsafe_allow_html=True)
+
