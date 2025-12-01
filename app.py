@@ -254,8 +254,6 @@ if page == "ML Prediction App":
             ) if (easy_exercise_attempt + medium_exercise_attempt + hard_exercise_attempt) else 1,
         }
 
-    
-
         df = pd.DataFrame([x])
     
         # numeric → pass/fail mapping
@@ -267,6 +265,7 @@ if page == "ML Prediction App":
             f"<div class='prediction-box'>Prediction: {prediction_label}</div>",
             unsafe_allow_html=True
         )
+
 
 
 
