@@ -80,7 +80,7 @@ students early — even without academic history.
     """)
 
     st.markdown("---")
-    st.header("⚠️ The Challenge")
+    st.header("The Challenge")
     st.write("""
 Universities detect struggling students too late.  
 Our system predicts issues weeks earlier — enabling intervention.
@@ -128,7 +128,7 @@ Our system predicts issues weeks earlier — enabling intervention.
 
 # -------------------- RESEARCH GAPS --------------------
 st.markdown("---")
-st.subheader("🔍 Research Gaps Addressed by This Study")
+st.subheader("Research Gaps Addressed by This Study")
 st.write("""
 1. **Binary Outcome Limitation:** Prior work focused only on pass/fail prediction; it did not leverage detailed behavioral metrics like completion time, attempts, syntax errors, or effort efficiency.
 
@@ -260,6 +260,7 @@ if page == "ML Prediction App":
 
         st.markdown(f"<div class='prediction-box'>Prediction: {prediction}</div>", unsafe_allow_html=True)
         # st.markdown(f"<div class='prediction-box'>Success Probability: {probability:.2f}</div>", unsafe_allow_html=True)
+
 
 
 
