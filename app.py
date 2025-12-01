@@ -124,7 +124,7 @@ Our system predicts issues weeks earlier — enabling intervention.
 
     st.success("✅ Stacking model trained successfully!")
 
-st.markdown("---") st.header("Machine Learning Evaluation Graphs") import os from PIL import Image graph_files = { "Class Distribution (Pass vs Fail)": "Class Distribution (Pass vs Fail).png", "Confusion Matrix": "Confusion Matrix.png", "Learning Curve": "Learning Curve.png", "Precision–Recall Curve": "Precision-Recall Curve.png", "ROC Curve with AUC": "ROC Curve with AUC.png", "Top 15 Feature Importances — Random Forest": "Top 15 Feature Importance - Random Forest.png", "Top 15 Feature Importances — XGBoost": "Top 15 Feature Importance - XGBoost.png", } for title, path in graph_files.items(): st.subheader(f"{title}") if os.path.exists(path): img = Image.open(path) st.image(img, use_container_width=True) else: st.error(f"File not found: {path}")
+# st.markdown("---") st.header("Machine Learning Evaluation Graphs") import os from PIL import Image graph_files = { "Class Distribution (Pass vs Fail)": "Class Distribution (Pass vs Fail).png", "Confusion Matrix": "Confusion Matrix.png", "Learning Curve": "Learning Curve.png", "Precision–Recall Curve": "Precision-Recall Curve.png", "ROC Curve with AUC": "ROC Curve with AUC.png", "Top 15 Feature Importances — Random Forest": "Top 15 Feature Importance - Random Forest.png", "Top 15 Feature Importances — XGBoost": "Top 15 Feature Importance - XGBoost.png", } for title, path in graph_files.items(): st.subheader(f"{title}") if os.path.exists(path): img = Image.open(path) st.image(img, use_container_width=True) else: st.error(f"File not found: {path}")
 
 # -------------------- RESEARCH GAPS --------------------
 # st.markdown("---")
@@ -247,6 +247,7 @@ if page == "ML Prediction App":
 
         st.markdown(f"<div class='prediction-box'>Prediction: {prediction}</div>", unsafe_allow_html=True)
         st.markdown(f"<div class='prediction-box'>Success Probability: {probability:.2f}</div>", unsafe_allow_html=True)
+
 
 
 
