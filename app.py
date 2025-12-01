@@ -48,7 +48,7 @@ st.markdown("""
 # =========================   NAVIGATION   =============================
 # =====================================================================
 page = st.sidebar.radio(
-    "📌 Navigate",
+    "Navigate",
     ["Research Overview", "ML Prediction App"]
 )
 
@@ -206,3 +206,4 @@ if page == "ML Prediction App":
 
         st.markdown(f"<div class='prediction-box'>Prediction: {prediction}</div>", unsafe_allow_html=True)
         st.markdown(f"<div class='prediction-box'>Success Probability: {probability:.2f}</div>", unsafe_allow_html=True)
+
