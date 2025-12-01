@@ -100,6 +100,31 @@ Our system predicts issues weeks earlier — enabling intervention.
 
     st.success("Stacking Model F1 Score: **0.857**, ROC AUC: **0.907**")
 
+    st.markdown("---")
+    st.header("📊 Machine Learning Evaluation Graphs")
+
+    import os
+    from PIL import Image
+
+    graph_files = {
+        "Class Distribution (Pass vs Fail)": "/mnt/data/Class Distribution (Pass vs Fail).png",
+        "Confusion Matrix": "/mnt/data/Confusion Matrix.png",
+        "Learning Curve": "/mnt/data/Learning Curve.png",
+        "Precision–Recall Curve": "/mnt/data/Precision-Recall Curve.png",
+        "ROC Curve with AUC": "/mnt/data/ROC Curve with AUC.png",
+        "Top 15 Feature Importances — Random Forest": "/mnt/data/Top 15 Feature Importance - Random Forest.png",
+        "Top 15 Feature Importances — XGBoost": "/mnt/data/Top 15 Feature Importance - XGBoost.png",
+    }
+
+    for title, path in graph_files.items():
+        st.subheader(f"📌 {title}")
+        if os.path.exists(path):
+            img = Image.open(path)
+            st.image(img, use_container_width=True)
+        else:
+            st.error(f"❌ File not found: {path}")
+
+
 #     st.markdown("---")
 #     st.header("🎯 Expected Outcome")
 #     st.write("""
@@ -206,5 +231,6 @@ if page == "ML Prediction App":
 
         st.markdown(f"<div class='prediction-box'>Prediction: {prediction}</div>", unsafe_allow_html=True)
         st.markdown(f"<div class='prediction-box'>Success Probability: {probability:.2f}</div>", unsafe_allow_html=True)
+
 
 
