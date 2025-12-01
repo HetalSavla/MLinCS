@@ -149,8 +149,8 @@ st.write("""
 - Teacher-friendly dashboard  
 """)
 
-    st.markdown("---")
-    st.markdown("© 2025 – RBS | Academic Research Use Only")
+st.markdown("---")
+st.markdown("© 2025 – RBS | Academic Research Use Only")
 
 
 # =====================================================================
@@ -247,6 +247,7 @@ if page == "ML Prediction App":
 
         st.markdown(f"<div class='prediction-box'>Prediction: {prediction}</div>", unsafe_allow_html=True)
         st.markdown(f"<div class='prediction-box'>Success Probability: {probability:.2f}</div>", unsafe_allow_html=True)
+
 
 
 
