@@ -98,7 +98,32 @@ Our system predicts issues weeks earlier — enabling intervention.
 - **Stacking Ensemble (BEST)**  
 """)
 
-    st.success("Stacking Model F1 Score: **0.857**, ROC AUC: **0.907**")
+    # -------------------- STACKING MODEL PERFORMANCE --------------------
+    st.markdown("---")
+    st.subheader("📊 Stacking Model Performance")
+
+    st.markdown("""
+- **Accuracy:** 0.818  
+- **Precision:** 0.849  
+- **Recall:** 0.865  
+- **F1 Score:** 0.857  
+- **ROC AUC:** 0.907
+""")
+
+    st.markdown("""
+**Classification Report:**
+
+| Class | Precision | Recall | F1-Score | Support |
+|-------|-----------|--------|----------|---------|
+| 0     | 0.76      | 0.74   | 0.75     | 902     |
+| 1     | 0.85      | 0.87   | 0.86     | 1536    |
+| **Accuracy** | -       | -      | 0.82     | 2438    |
+| **Macro Avg** | 0.81    | 0.80   | 0.80     | 2438    |
+| **Weighted Avg** | 0.82 | 0.82   | 0.82     | 2438    |
+""")
+
+    st.success("✅ Stacking model trained successfully!")
+
 
     st.markdown("---")
     st.header("📊 Machine Learning Evaluation Graphs")
@@ -231,6 +256,7 @@ if page == "ML Prediction App":
 
         st.markdown(f"<div class='prediction-box'>Prediction: {prediction}</div>", unsafe_allow_html=True)
         st.markdown(f"<div class='prediction-box'>Success Probability: {probability:.2f}</div>", unsafe_allow_html=True)
+
 
 
 
