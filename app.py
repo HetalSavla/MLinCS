@@ -254,6 +254,8 @@ if page == "ML Prediction App":
             ) if (easy_exercise_attempt + medium_exercise_attempt + hard_exercise_attempt) else 1,
         }
 
+        label_mapping = {0: "Fail", 1: "Pass"}
+
         df = pd.DataFrame([x])
         prediction_numeric = model.predict(df)[0]
         prediction_label = label_mapping[prediction_numeric]
@@ -264,6 +266,7 @@ if page == "ML Prediction App":
 
         # st.markdown(f"<div class='prediction-box'>Prediction: {prediction}</div>", unsafe_allow_html=True)
         # st.markdown(f"<div class='prediction-box'>Success Probability: {probability:.2f}</div>", unsafe_allow_html=True)
+
 
 
 
