@@ -42,7 +42,6 @@ st.markdown("""
 st.markdown("<div class='title'>Student Performance Prediction</div>", unsafe_allow_html=True)
 
 # ------------------- Input Section -------------------
-st.markdown("<div class='input-card'>", unsafe_allow_html=True)
 
 col1, col2, col3 = st.columns(3)
 
@@ -129,6 +128,7 @@ if predict_btn:
 
     st.markdown(f"<div class='prediction-box'>Prediction: {prediction}</div>", unsafe_allow_html=True)
     st.markdown(f"<div class='prediction-box'>Success Probability: {probability:.2f}</div>", unsafe_allow_html=True)
+
 
 
 
