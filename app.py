@@ -124,6 +124,10 @@ Our system predicts issues weeks earlier — enabling intervention.
 
     st.success("✅ Stacking model trained successfully!")
 
+# -------------------- RESEARCH GAPS --------------------
+st.markdown("---")
+st.subheader("🔍 Research Gaps Addressed by This Study")
+
 
 #     st.markdown("---")
 #     st.header("🎯 Expected Outcome")
@@ -231,5 +235,6 @@ if page == "ML Prediction App":
 
         st.markdown(f"<div class='prediction-box'>Prediction: {prediction}</div>", unsafe_allow_html=True)
         st.markdown(f"<div class='prediction-box'>Success Probability: {probability:.2f}</div>", unsafe_allow_html=True)
+
 
 
