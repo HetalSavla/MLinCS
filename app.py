@@ -112,7 +112,7 @@ using behavioral analytics from an online IDE and advanced ML models. Privacy-fi
 - System Development: Completed  
 - ML Pipeline: Completed  
 - Dashboard: Completed  
-- Data Collection: In Progress  
+- Data Collection: Completed  
 - Model Training: Completed (stacking ensemble)  
 - Publication: Pending (target Scopus by end of 2025)
     """)
@@ -390,3 +390,4 @@ with tab_predict:
 # -------------------------
 # End of app
 # -------------------------
+
