@@ -129,7 +129,7 @@ Our system predicts issues weeks earlier — enabling intervention.
 st.markdown("---")
 st.subheader("🔍 Research Gaps Addressed by This Study")
 
-st.write("""
+st.write("
 1. Binary Outcome Limitation: Prior work focused only on pass/fail prediction; it did not leverage detailed behavioral metrics like completion time, attempts, syntax errors, or effort efficiency.
 
 2. Exercise Difficulty & Phase Ignored: Previous models treated all exercises equally and did not account for different semester phases (Early, Mid, End) for predictions.
@@ -138,8 +138,7 @@ st.write("""
 
 4. Limited Student-Level Actionable Insights: While prior models provided general interpretability, they offered minimal actionable insights for individual students, limiting timely intervention potential.
 
-5. Lack of Weighted Effort Metrics: Earlier studies did not include difficulty-weighted scoring, which captures effort and challenge levels more accurately.
-""")
+5. Lack of Weighted Effort Metrics: Earlier studies did not include difficulty-weighted scoring, which captures effort and challenge levels more accurately.")
 
     st.markdown("---")
     st.header("Machine Learning Evaluation Graphs")
@@ -272,6 +271,7 @@ if page == "ML Prediction App":
 
         st.markdown(f"<div class='prediction-box'>Prediction: {prediction}</div>", unsafe_allow_html=True)
         st.markdown(f"<div class='prediction-box'>Success Probability: {probability:.2f}</div>", unsafe_allow_html=True)
+
 
 
 
