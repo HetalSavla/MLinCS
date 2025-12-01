@@ -36,7 +36,7 @@ st.markdown("""
             font-size: 48px;
             font-weight: 800;
             text-align: center;
-            color: #ffffff;
+            # color: #ffffff;
             margin-bottom: 20px;
             text-shadow: 2px 2px 10px #000;
         }
@@ -213,4 +213,5 @@ with tab5:
         st.markdown(text, unsafe_allow_html=True)
     else:
         st.info(f"No content file found at `{CONTENT_FILE}` — please place your content there.")
+
 
