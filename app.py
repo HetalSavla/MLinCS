@@ -255,12 +255,13 @@ if page == "ML Prediction App":
         }
 
      
-        df = pd.DataFrame([x])
-        prediction_numeric = model.predict(df)[0]
-        # probability = model.predict_proba(df)[0][1]
+    df = pd.DataFrame([x])
+    prediction_numeric = model.predict(df)[0]
+    # probability = model.predict_proba(df)[0][1]
 
-        st.markdown(f"<div class='prediction-box'>Prediction: {prediction}</div>", unsafe_allow_html=True)
-        # st.markdown(f"<div class='prediction-box'>Success Probability: {probability:.2f}</div>", unsafe_allow_html=True)
+    st.markdown(f"<div class='prediction-box'>Prediction: {prediction}</div>", unsafe_allow_html=True)
+    # st.markdown(f"<div class='prediction-box'>Success Probability: {probability:.2f}</div>", unsafe_allow_html=True)
+
 
 
 
