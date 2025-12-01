@@ -11,7 +11,7 @@ st.markdown("""
           background: linear-gradient(#7abfad, #eef2f3, #8e9eab);
         }
         .input-card {
-            background: rgba(225, 232, 237,0.6);
+            background: rgba(181, 235, 204,0.6);
             padding: 25px;
             border-radius: 18px;
             box-shadow: 0 4px 20px rgba(0,0,0,0.1);
@@ -42,7 +42,7 @@ st.markdown("""
 st.markdown("<div class='title'>Student Performance Prediction</div>", unsafe_allow_html=True)
 
 # ------------------- Input Section -------------------
-
+st.markdown("<div class='input-card'>", unsafe_allow_html=True)
 
 col1, col2, col3 = st.columns(3)
 
@@ -129,6 +129,7 @@ if predict_btn:
 
     st.markdown(f"<div class='prediction-box'>Prediction: {prediction}</div>", unsafe_allow_html=True)
     st.markdown(f"<div class='prediction-box'>Success Probability: {probability:.2f}</div>", unsafe_allow_html=True)
+
 
 
 
