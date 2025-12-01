@@ -160,7 +160,8 @@ graph_files = { "Class Distribution (Pass vs Fail)": "Class Distribution (Pass v
 for title, path in graph_files.items(): 
     st.subheader(f"{title}") 
     if os.path.exists(path): 
-        img = Image.open(path) st.image(img, use_container_width=True) 
+        img = Image.open(path) 
+        st.image(img, use_container_width=True) 
     else: 
         st.error(f"File not found: {path}")
 
@@ -259,6 +260,7 @@ if page == "ML Prediction App":
 
         st.markdown(f"<div class='prediction-box'>Prediction: {prediction}</div>", unsafe_allow_html=True)
         st.markdown(f"<div class='prediction-box'>Success Probability: {probability:.2f}</div>", unsafe_allow_html=True)
+
 
 
 
