@@ -34,6 +34,7 @@ h1, h2, h3 {
     box-shadow: 0 8px 25px rgba(0,0,0,0.25);
     backdrop-filter: blur(10px);
     border: 1px solid rgba(255,255,255,0.2);
+    margin-top: 20px;
 }
 
 input, select {
@@ -75,25 +76,54 @@ st.markdown("<p style='text-align:center; color:#cce7ff;'>AI-powered prediction 
 # ---------------------- LOAD MODEL -------------------------
 model = joblib.load("stacking_model.pkl")
 
-# ---------------------- INPUT CARD -------------------------
+# ---------------------- EASY EXERCISE CARD -----------------
 st.markdown('<div class="card">', unsafe_allow_html=True)
-st.subheader("Enter Details")
+st.subheader("🟢 Easy Exercise Details")
 
 col1, col2 = st.columns(2)
 
 with col1:
-    total_easy_exercise = st.number_input("Total easy exercises", min_value=0, step=1, key="tee")
-    completed_easy_exercise = st.number_input("Completed easy exercises", min_value=0, step=1, key="cee")
-    easy_exercise_completion_time = st.number_input("Easy completion time", min_value=0, step=1, key="eect")
-    easy_exercise_attempt = st.number_input("Easy attempts", min_value=0, step=1, key="eea")
-    easy_exercise_syntax_error = st.number_input("Easy syntax errors", min_value=0, step=1, key="eese")
+    total_easy_exercise = st.number_input("Total Easy Exercises", min_value=0, step=1, key="tee")
+    completed_easy_exercise = st.number_input("Completed Easy Exercises", min_value=0, step=1, key="cee")
+    easy_exercise_attempt = st.number_input("Easy Exercise Attempts", min_value=0, step=1, key="eea")
 
 with col2:
-    total_medium_exercise = st.number_input("Total medium exercises", min_value=0, step=1, key="tme")
-    completed_medium_exercise = st.number_input("Completed medium exercises", min_value=0, step=1, key="cme")
-    medium_exercise_completion_time = st.number_input("Medium completion time", min_value=0, step=1, key="mect")
-    medium_exercise_attempt = st.number_input("Medium attempts", min_value=0, step=1, key="mea")
-    medium_exercise_syntax_error = st.number_input("Medium syntax errors", min_value=0, step=1, key="mese")
+    easy_exercise_completion_time = st.number_input("Easy Completion Time", min_value=0, step=1, key="ect")
+    easy_exercise_syntax_error = st.number_input("Easy Syntax Errors", min_value=0, step=1, key="ese")
+
+st.markdown('</div>', unsafe_allow_html=True)
+
+# ---------------------- MEDIUM EXERCISE CARD -----------------
+st.markdown('<div class="card">', unsafe_allow_html=True)
+st.subheader("🟡 Medium Exercise Details")
+
+col3, col4 = st.columns(2)
+
+with col3:
+    total_medium_exercise = st.number_input("Total Medium Exercises", min_value=0, step=1, key="tme")
+    completed_medium_exercise = st.number_input("Completed Medium Exercises", min_value=0, step=1, key="cme")
+    medium_exercise_attempt = st.number_input("Medium Exercise Attempts", min_value=0, step=1, key="mea")
+
+with col4:
+    medium_exercise_completion_time = st.number_input("Medium Completion Time", min_value=0, step=1, key="mct")
+    medium_exercise_syntax_error = st.number_input("Medium Syntax Errors", min_value=0, step=1, key="mse")
+
+st.markdown('</div>', unsafe_allow_html=True)
+
+# ---------------------- HARD EXERCISE CARD -----------------
+st.markdown('<div class="card">', unsafe_allow_html=True)
+st.subheader("🔴 Hard Exercise Details")
+
+col5, col6 = st.columns(2)
+
+with col5:
+    total_hard_exercise = st.number_input("Total Hard Exercises", min_value=0, step=1, key="the")
+    completed_hard_exercise = st.number_input("Completed Hard Exercises", min_value=0, step=1, key="che")
+    hard_exercise_attempt = st.number_input("Hard Exercise Attempts", min_value=0, step=1, key="hea")
+
+with col6:
+    hard_exercise_completion_time = st.number_input("Hard Completion Time", min_value=0, step=1, key="hct")
+    hard_exercise_syntax_error = st.number_input("Hard Syntax Errors", min_value=0, step=1, key="hse")
 
 st.markdown('</div>', unsafe_allow_html=True)
 
@@ -102,10 +132,17 @@ if st.button("Predict Result"):
     features = np.array([[
         total_easy_exercise, completed_easy_exercise, easy_exercise_completion_time,
         easy_exercise_attempt, easy_exercise_syntax_error,
+
         total_medium_exercise, completed_medium_exercise, medium_exercise_completion_time,
-        medium_exercise_attempt, medium_exercise_syntax_error
+        medium_exercise_attempt, medium_exercise_syntax_error,
+
+        total_hard_exercise, completed_hard_exercise, hard_exercise_completion_time,
+        hard_exercise_attempt, hard_exercise_syntax_error
     ]])
 
     prediction = model.predict(features)[0]
 
-    st.markdown(f"<div class='pred-box'>Predicted Result: <strong>{prediction}</strong></div>", unsafe_allow_html=True)
+    st.markdown(
+        f"<div class='pred-box'>Predicted Result: <strong>{prediction}</strong></div>",
+        unsafe_allow_html=True
+    )
