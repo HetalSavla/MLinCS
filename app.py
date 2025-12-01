@@ -11,7 +11,7 @@ st.markdown("""
             background: linear-gradient(135deg, #eef2f3, #8e9eab);
         }
         .input-card {
-            background: rgba(122, 191, 173);
+            background: rgba(122, 191, 173,0);
             padding: 25px;
             border-radius: 18px;
             box-shadow: 0 4px 20px rgba(0,0,0,0.1);
