@@ -2,18 +2,14 @@ import streamlit as st
 import pandas as pd
 import joblib
 
-# Load model
 model = joblib.load("stacking_model.pkl")
 
 # ------------------- Modern UI Styles -------------------
 st.markdown("""
     <style>
-        /* Background gradient */
         .stApp {
             background: linear-gradient(135deg, #eef2f3, #8e9eab);
         }
-
-        /* Card style */
         .input-card {
             background: rgba(255,255,255,0.6);
             padding: 25px;
@@ -21,8 +17,6 @@ st.markdown("""
             box-shadow: 0 4px 20px rgba(0,0,0,0.1);
             backdrop-filter: blur(8px);
         }
-
-        /* Title style */
         .title {
             font-size: 42px;
             font-weight: 700;
@@ -30,8 +24,6 @@ st.markdown("""
             color: #222;
             margin-bottom: 15px;
         }
-
-        /* Prediction box */
         .prediction-box {
             background: #ffffffdd;
             padding: 22px;
@@ -46,49 +38,48 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-# ------------------- Title -------------------
+# Title
 st.markdown("<div class='title'>Student Performance Prediction</div>", unsafe_allow_html=True)
 
-# ------------------- Input Form Layout -------------------
-with st.container():
-    st.markdown("<div class='input-card'>", unsafe_allow_html=True)
+# ------------------- Input Section -------------------
+st.markdown("<div class='input-card'>", unsafe_allow_html=True)
 
-    col1, col2, col3 = st.columns(3)
+col1, col2, col3 = st.columns(3)
 
-    # --- Easy ---
-    with col1:
-        st.subheader("Easy Level")
-        total_easy_exercise = st.number_input("Total easy exercise", min_value=0, step=1)
-        completed_easy_exercise = st.number_input("Completed easy exercise", min_value=0, step=1)
-        easy_exercise_completion_time = st.number_input("Completion time", min_value=0, step=1)
-        easy_exercise_attempt = st.number_input("Attempts", min_value=0, step=1)
-        easy_exercise_syntax_error = st.number_input("Syntax errors", min_value=0, step=1)
+# ---------- EASY ----------
+with col1:
+    st.subheader("Easy Level")
+    total_easy_exercise = st.number_input("Total easy exercise", min_value=0, step=1, key="easy_total")
+    completed_easy_exercise = st.number_input("Completed easy exercise", min_value=0, step=1, key="easy_completed")
+    easy_exercise_completion_time = st.number_input("Completion time (Easy)", min_value=0, step=1, key="easy_ctime")
+    easy_exercise_attempt = st.number_input("Attempts (Easy)", min_value=0, step=1, key="easy_attempt")
+    easy_exercise_syntax_error = st.number_input("Syntax errors (Easy)", min_value=0, step=1, key="easy_error")
 
-    # --- Medium ---
-    with col2:
-        st.subheader("Medium Level")
-        total_medium_exercise = st.number_input("Total medium exercise", min_value=0, step=1)
-        completed_medium_exercise = st.number_input("Completed medium exercise", min_value=0, step=1)
-        medium_exercise_completion_time = st.number_input("Completion time", min_value=0, step=1)
-        medium_exercise_attempt = st.number_input("Attempts", min_value=0, step=1)
-        medium_exercise_syntax_error = st.number_input("Syntax errors", min_value=0, step=1)
+# ---------- MEDIUM ----------
+with col2:
+    st.subheader("Medium Level")
+    total_medium_exercise = st.number_input("Total medium exercise", min_value=0, step=1, key="med_total")
+    completed_medium_exercise = st.number_input("Completed medium exercise", min_value=0, step=1, key="med_completed")
+    medium_exercise_completion_time = st.number_input("Completion time (Medium)", min_value=0, step=1, key="med_ctime")
+    medium_exercise_attempt = st.number_input("Attempts (Medium)", min_value=0, step=1, key="med_attempt")
+    medium_exercise_syntax_error = st.number_input("Syntax errors (Medium)", min_value=0, step=1, key="med_error")
 
-    # --- Hard ---
-    with col3:
-        st.subheader("Hard Level")
-        total_hard_exercise = st.number_input("Total hard exercise", min_value=0, step=1)
-        completed_hard_exercise = st.number_input("Completed hard exercise", min_value=0, step=1)
-        hard_exercise_completion_time = st.number_input("Completion time", min_value=0, step=1)
-        hard_exercise_attempt = st.number_input("Attempts", min_value=0, step=1)
-        hard_exercise_syntax_error = st.number_input("Syntax errors", min_value=0, step=1)
+# ---------- HARD ----------
+with col3:
+    st.subheader("Hard Level")
+    total_hard_exercise = st.number_input("Total hard exercise", min_value=0, step=1, key="hard_total")
+    completed_hard_exercise = st.number_input("Completed hard exercise", min_value=0, step=1, key="hard_completed")
+    hard_exercise_completion_time = st.number_input("Completion time (Hard)", min_value=0, step=1, key="hard_ctime")
+    hard_exercise_attempt = st.number_input("Attempts (Hard)", min_value=0, step=1, key="hard_attempt")
+    hard_exercise_syntax_error = st.number_input("Syntax errors (Hard)", min_value=0, step=1, key="hard_error")
 
-    # Time span (stylish)
-    st.subheader("Time Span")
-    time_span_label = st.selectbox("Select Time Span", ["Early", "Mid", "End"])
-    time_span_mapping = {"Early": 1, "Mid": 2, "End": 3}
-    which_time_span_encoded = time_span_mapping[time_span_label]
+# ---------- Time Span ----------
+st.subheader("Time Span")
+time_span_label = st.selectbox("Select Time Span", ["Early", "Mid", "End"], key="ts_label")
+time_span_mapping = {"Early": 1, "Mid": 2, "End": 3}
+which_time_span_encoded = time_span_mapping[time_span_label]
 
-    st.markdown("</div>", unsafe_allow_html=True)
+st.markdown("</div>", unsafe_allow_html=True)
 
 # ------------------- Predict Button -------------------
 predict_btn = st.button("🔮 Predict Performance", use_container_width=True)
@@ -136,12 +127,5 @@ if predict_btn:
     prediction = model.predict(df)[0]
     probability = model.predict_proba(df)[0][1]
 
-    # ------------------- Output UI -------------------
-    st.markdown(
-        f"<div class='prediction-box'>Prediction: {prediction}</div>",
-        unsafe_allow_html=True
-    )
-    st.markdown(
-        f"<div class='prediction-box'>Success Probability: {probability:.2f}</div>",
-        unsafe_allow_html=True
-    )
+    st.markdown(f"<div class='prediction-box'>Prediction: {prediction}</div>", unsafe_allow_html=True)
+    st.markdown(f"<div class='prediction-box'>Success Probability: {probability:.2f}</div>", unsafe_allow_html=True)
