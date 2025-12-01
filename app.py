@@ -1,6 +1,8 @@
 import streamlit as st
 import pandas as pd
 import joblib
+import os
+from PIL import Image
 
 # ---------------------------------------------------------
 # LOAD ML MODEL
@@ -43,7 +45,6 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-
 # =====================================================================
 # =========================   NAVIGATION   =============================
 # =====================================================================
@@ -77,8 +78,7 @@ students early — even without academic history.
 - Behavioral analytics  
 - No academic history required  
 - Real-time prediction  
-    """)
-
+""")
 
     st.markdown("---")
     st.header("The Challenge")
@@ -123,29 +123,26 @@ Our system predicts issues weeks earlier — enabling intervention.
 | **Weighted Avg** | 0.82 | 0.82   | 0.82     | 2438    |
 """)
 
-st.success("Stacking model trained successfully!")
+    st.success("✅ Stacking model trained successfully!")
 
-# -------------------- RESEARCH GAPS --------------------
+    # -------------------- RESEARCH GAPS --------------------
     st.markdown("---")
     st.subheader("🔍 Research Gaps Addressed by This Study")
-    
+
     st.write("""
-    1. Binary Outcome Limitation: Prior work focused only on pass/fail prediction; it did not leverage detailed behavioral metrics like completion time, attempts, syntax errors, or effort efficiency.
-    
-    2. Exercise Difficulty & Phase Ignored: Previous models treated all exercises equally and did not account for different semester phases (Early, Mid, End) for predictions.
-    
-    3. Limited Context Generalizability: Existing frameworks were validated in specific contexts and may not generalize to C-programming courses for BCA students in the Saurashtra region.
-    
-    4. Limited Student-Level Actionable Insights: While prior models provided general interpretability, they offered minimal actionable insights for individual students, limiting timely intervention potential.
-    
-    5. Lack of Weighted Effort Metrics: Earlier studies did not include difficulty-weighted scoring, which captures effort and challenge levels more accurately.
-    """)
+1. **Binary Outcome Limitation:** Prior work focused only on pass/fail prediction; it did not leverage detailed behavioral metrics like completion time, attempts, syntax errors, or effort efficiency.
+
+2. **Exercise Difficulty & Phase Ignored:** Previous models treated all exercises equally and did not account for different semester phases (Early, Mid, End) for predictions.
+
+3. **Limited Context Generalizability:** Existing frameworks were validated in specific contexts and may not generalize to C-programming courses for BCA students in the Saurashtra region.
+
+4. **Limited Student-Level Actionable Insights:** While prior models provided general interpretability, they offered minimal actionable insights for individual students, limiting timely intervention potential.
+
+5. **Lack of Weighted Effort Metrics:** Earlier studies did not include difficulty-weighted scoring, which captures effort and challenge levels more accurately.
+""")
 
     st.markdown("---")
     st.header("Machine Learning Evaluation Graphs")
-
-    import os
-    from PIL import Image
 
     graph_files = {
         "Class Distribution (Pass vs Fail)": "Class Distribution (Pass vs Fail).png",
@@ -158,24 +155,12 @@ st.success("Stacking model trained successfully!")
     }
 
     for title, path in graph_files.items():
-        st.subheader(f"{title}")
+        st.subheader(title)
         if os.path.exists(path):
             img = Image.open(path)
             st.image(img, use_container_width=True)
         else:
             st.error(f"File not found: {path}")
-
-
-#     st.markdown("---")
-#     st.header("Expected Outcome")
-#     st.write("""
-# - Automatic early alerts  
-# - Improved pass percentage  
-# - Teacher-friendly dashboard  
-# """)
-
-#     st.markdown("---")
-#     st.markdown("© 2025 – RBS | Academic Research Use Only")
 
 
 # =====================================================================
@@ -227,7 +212,6 @@ if page == "ML Prediction App":
     predict_btn = st.button("Predict Performance", use_container_width=True)
 
     if predict_btn:
-
         x = {
             "total_easy_exercise": total_easy_exercise,
             "completed_easy_exercise": completed_easy_exercise,
@@ -263,26 +247,3 @@ if page == "ML Prediction App":
             "overall_efficiency": (
                 (completed_easy_exercise + completed_medium_exercise + completed_hard_exercise) /
                 (easy_exercise_attempt + medium_exercise_attempt + hard_exercise_attempt) + 1
-            ) if (easy_exercise_attempt + medium_exercise_attempt + hard_exercise_attempt) else 1,
-        }
-
-        df = pd.DataFrame([x])
-        prediction = model.predict(df)[0]
-        probability = model.predict_proba(df)[0][1]
-
-        st.markdown(f"<div class='prediction-box'>Prediction: {prediction}</div>", unsafe_allow_html=True)
-        st.markdown(f"<div class='prediction-box'>Success Probability: {probability:.2f}</div>", unsafe_allow_html=True)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
