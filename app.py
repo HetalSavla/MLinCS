@@ -132,7 +132,7 @@ with tab_workflow:
         st.info("`ds1.csv` used as the baseline dataset for model training in Step 2.")
 
     # Step 2
-    with st.expander("Step 2 — Training baseline models (code0-no graphs.py & code0-graphs.py)"):
+    with st.expander("Step 2 — Training baseline models"):
         st.markdown("**Models trained on Dataset:**")
         st.write("- LogisticRegression  - RandomForest  - GradientBoosting  - MLP  - SVM  - (XGBoost also tested)")
         st.markdown("**Model definitions** (example):")
@@ -390,5 +390,6 @@ with tab_predict:
 # -------------------------
 # End of app
 # -------------------------
+
 
 
