@@ -64,27 +64,27 @@ if page == "Research Overview":
     st.header("Research Overview")
 
     st.write("""
-This PhD research project focuses on predicting student performance in C programming 
-courses for BCA students in the Saurashtra region.
-
-We use behavioral analytics from the online IDE and ML models to detect at-risk 
-students early — even without academic history.
-""")
+    This PhD research project focuses on predicting student performance in C programming 
+    courses for BCA students in the Saurashtra region.
+    
+    We use behavioral analytics from the online IDE and ML models to detect at-risk 
+    students early — even without academic history.
+    """)
 
     st.info("""
-**Highlights**
-- Early detection  
-- Behavioral analytics  
-- No academic history required  
-- Real-time prediction  
-    """)
+    **Highlights**
+    - Early detection  
+    - Behavioral analytics  
+    - No academic history required  
+    - Real-time prediction  
+        """)
 
     st.markdown("---")
     st.header("The Challenge")
     st.write("""
-Universities detect struggling students too late.  
-Our system predicts issues weeks earlier — enabling intervention.
-""")
+    Universities detect struggling students too late.  
+    Our system predicts issues weeks earlier — enabling intervention.
+    """)
 
     st.markdown("---")
     st.header("Machine Learning Models Used")
@@ -103,67 +103,67 @@ Our system predicts issues weeks earlier — enabling intervention.
     st.subheader("Stacking Model Performance")
 
     st.markdown("""
-- **Accuracy:** 0.818  
-- **Precision:** 0.849  
-- **Recall:** 0.865  
-- **F1 Score:** 0.857  
-- **ROC AUC:** 0.907
-""")
+    - **Accuracy:** 0.818  
+    - **Precision:** 0.849  
+    - **Recall:** 0.865  
+    - **F1 Score:** 0.857  
+    - **ROC AUC:** 0.907
+    """)
 
     st.markdown("""
-**Classification Report:**
-
-| Class | Precision | Recall | F1-Score | Support |
-|-------|-----------|--------|----------|---------|
-| 0     | 0.76      | 0.74   | 0.75     | 902     |
-| 1     | 0.85      | 0.87   | 0.86     | 1536    |
-| **Accuracy** | -       | -      | 0.82     | 2438    |
-| **Macro Avg** | 0.81    | 0.80   | 0.80     | 2438    |
-| **Weighted Avg** | 0.82 | 0.82   | 0.82     | 2438    |
-""")
+    **Classification Report:**
+    
+    | Class | Precision | Recall | F1-Score | Support |
+    |-------|-----------|--------|----------|---------|
+    | 0     | 0.76      | 0.74   | 0.75     | 902     |
+    | 1     | 0.85      | 0.87   | 0.86     | 1536    |
+    | **Accuracy** | -       | -      | 0.82     | 2438    |
+    | **Macro Avg** | 0.81    | 0.80   | 0.80     | 2438    |
+    | **Weighted Avg** | 0.82 | 0.82   | 0.82     | 2438    |
+    """)
 
     st.success("Stacking model trained successfully!")
 
-# st.markdown("---") st.header("Machine Learning Evaluation Graphs") import os from PIL import Image graph_files = { "Class Distribution (Pass vs Fail)": "Class Distribution (Pass vs Fail).png", "Confusion Matrix": "Confusion Matrix.png", "Learning Curve": "Learning Curve.png", "Precision–Recall Curve": "Precision-Recall Curve.png", "ROC Curve with AUC": "ROC Curve with AUC.png", "Top 15 Feature Importances — Random Forest": "Top 15 Feature Importance - Random Forest.png", "Top 15 Feature Importances — XGBoost": "Top 15 Feature Importance - XGBoost.png", } for title, path in graph_files.items(): st.subheader(f"{title}") if os.path.exists(path): img = Image.open(path) st.image(img, use_container_width=True) else: st.error(f"File not found: {path}")
+    # st.markdown("---") st.header("Machine Learning Evaluation Graphs") import os from PIL import Image graph_files = { "Class Distribution (Pass vs Fail)": "Class Distribution (Pass vs Fail).png", "Confusion Matrix": "Confusion Matrix.png", "Learning Curve": "Learning Curve.png", "Precision–Recall Curve": "Precision-Recall Curve.png", "ROC Curve with AUC": "ROC Curve with AUC.png", "Top 15 Feature Importances — Random Forest": "Top 15 Feature Importance - Random Forest.png", "Top 15 Feature Importances — XGBoost": "Top 15 Feature Importance - XGBoost.png", } for title, path in graph_files.items(): st.subheader(f"{title}") if os.path.exists(path): img = Image.open(path) st.image(img, use_container_width=True) else: st.error(f"File not found: {path}")
+    
+    # -------------------- RESEARCH GAPS --------------------
+    st.markdown("---")
+    st.subheader("Research Gaps Addressed by This Study")
+    st.write("""
+    1. **Binary Outcome Limitation:** Prior work focused only on pass/fail prediction; it did not leverage detailed behavioral metrics like completion time, attempts, syntax errors, or effort efficiency.
+    
+    2. **Exercise Difficulty & Phase Ignored:** Previous models treated all exercises equally and did not account for different semester phases (Early, Mid, End) for predictions.
+    
+    3. **Limited Context Generalizability:** Existing frameworks were validated in specific contexts and may not generalize to C-programming courses for BCA students in the Saurashtra region.
+    
+    4. **Limited Student-Level Actionable Insights:** While prior models provided general interpretability, they offered minimal actionable insights for individual students, limiting timely intervention potential.
+    
+    5. **Lack of Weighted Effort Metrics:** Earlier studies did not include difficulty-weighted scoring, which captures effort and challenge levels more accurately.
+    """)
 
-# -------------------- RESEARCH GAPS --------------------
-st.markdown("---")
-st.subheader("Research Gaps Addressed by This Study")
-st.write("""
-1. **Binary Outcome Limitation:** Prior work focused only on pass/fail prediction; it did not leverage detailed behavioral metrics like completion time, attempts, syntax errors, or effort efficiency.
-
-2. **Exercise Difficulty & Phase Ignored:** Previous models treated all exercises equally and did not account for different semester phases (Early, Mid, End) for predictions.
-
-3. **Limited Context Generalizability:** Existing frameworks were validated in specific contexts and may not generalize to C-programming courses for BCA students in the Saurashtra region.
-
-4. **Limited Student-Level Actionable Insights:** While prior models provided general interpretability, they offered minimal actionable insights for individual students, limiting timely intervention potential.
-
-5. **Lack of Weighted Effort Metrics:** Earlier studies did not include difficulty-weighted scoring, which captures effort and challenge levels more accurately.
-""")
-
-st.markdown("---")
-st.header("Expected Outcome")
-st.write("""
-- Automatic early alerts  
-- Improved pass percentage  
-- Teacher-friendly dashboard  
-""")
-
-st.markdown("---")
-st.markdown("© 2025 – RBS | Academic Research Use Only")
-
-st.markdown("---") 
-st.header("Machine Learning Evaluation Graphs") 
-import os 
-from PIL import Image 
-graph_files = { "Class Distribution (Pass vs Fail)": "Class Distribution (Pass vs Fail).png", "Confusion Matrix": "Confusion Matrix.png", "Learning Curve": "Learning Curve.png", "Precision–Recall Curve": "Precision-Recall Curve.png", "ROC Curve with AUC": "ROC Curve with AUC.png", "Top 15 Feature Importances — Random Forest": "Top 15 Feature Importance - Random Forest.png", "Top 15 Feature Importances — XGBoost": "Top 15 Feature Importance - XGBoost.png", } 
-for title, path in graph_files.items(): 
-    st.subheader(f"{title}") 
-    if os.path.exists(path): 
-        img = Image.open(path) 
-        st.image(img, use_container_width=True) 
-    else: 
-        st.error(f"File not found: {path}")
+    st.markdown("---")
+    st.header("Expected Outcome")
+    st.write("""
+    - Automatic early alerts  
+    - Improved pass percentage  
+    - Teacher-friendly dashboard  
+    """)
+    
+    st.markdown("---")
+    st.markdown("© 2025 – RBS | Academic Research Use Only")
+    
+    st.markdown("---") 
+    st.header("Machine Learning Evaluation Graphs") 
+    import os 
+    from PIL import Image 
+    graph_files = { "Class Distribution (Pass vs Fail)": "Class Distribution (Pass vs Fail).png", "Confusion Matrix": "Confusion Matrix.png", "Learning Curve": "Learning Curve.png", "Precision–Recall Curve": "Precision-Recall Curve.png", "ROC Curve with AUC": "ROC Curve with AUC.png", "Top 15 Feature Importances — Random Forest": "Top 15 Feature Importance - Random Forest.png", "Top 15 Feature Importances — XGBoost": "Top 15 Feature Importance - XGBoost.png", } 
+    for title, path in graph_files.items(): 
+        st.subheader(f"{title}") 
+        if os.path.exists(path): 
+            img = Image.open(path) 
+            st.image(img, use_container_width=True) 
+        else: 
+            st.error(f"File not found: {path}")
 
 
 # =====================================================================
@@ -267,6 +267,7 @@ if page == "ML Prediction App":
             f"<div class='prediction-box'>Prediction: {prediction_label}</div>",
             unsafe_allow_html=True
         )
+
 
 
 
