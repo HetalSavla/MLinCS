@@ -21,7 +21,7 @@ st.set_page_config(page_title="AI-Driven Student Performance Prediction System",
 st.markdown("""
     <style>
         .stApp {
-            background: linear-gradient(135deg, #1f1c2c, #928dab);
+            # background: linear-gradient(135deg, #1f1c2c, #928dab);
             font-family: 'Segoe UI';
         }
         .glass-card {
@@ -213,3 +213,4 @@ with tab5:
         st.markdown(text, unsafe_allow_html=True)
     else:
         st.info(f"No content file found at `{CONTENT_FILE}` — please place your content there.")
+
