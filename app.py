@@ -154,7 +154,8 @@ st.markdown("© 2025 – RBS | Academic Research Use Only")
 
 st.markdown("---") 
 st.header("Machine Learning Evaluation Graphs") 
-import os from PIL import Image 
+import os 
+from PIL import Image 
 graph_files = { "Class Distribution (Pass vs Fail)": "Class Distribution (Pass vs Fail).png", "Confusion Matrix": "Confusion Matrix.png", "Learning Curve": "Learning Curve.png", "Precision–Recall Curve": "Precision-Recall Curve.png", "ROC Curve with AUC": "ROC Curve with AUC.png", "Top 15 Feature Importances — Random Forest": "Top 15 Feature Importance - Random Forest.png", "Top 15 Feature Importances — XGBoost": "Top 15 Feature Importance - XGBoost.png", } 
 for title, path in graph_files.items(): 
     st.subheader(f"{title}") 
@@ -258,6 +259,7 @@ if page == "ML Prediction App":
 
         st.markdown(f"<div class='prediction-box'>Prediction: {prediction}</div>", unsafe_allow_html=True)
         st.markdown(f"<div class='prediction-box'>Success Probability: {probability:.2f}</div>", unsafe_allow_html=True)
+
 
 
 
