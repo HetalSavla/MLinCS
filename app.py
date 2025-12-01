@@ -24,7 +24,13 @@ hard_exercise_completion_time = st.number_input("Hard exercise completion time",
 hard_exercise_attempt = st.number_input("Hard exercise attempt", min_value=0, step=1)
 hard_exercise_syntax_error = st.number_input("Hard exercise syntax error", min_value=0, step=1)
 
-which_time_span_encoded = st.selectbox("Time Span", [1, 2, 3])
+# which_time_span_encoded = st.selectbox("Time Span", [1, 2, 3])
+
+# --- UPDATED TIME SPAN INPUT ---
+time_span_label = st.selectbox("Time Span", ["Early", "Mid", "End"])
+time_span_mapping = {"Early": 1, "Mid": 2, "End": 3}
+which_time_span_encoded = time_span_mapping[time_span_label]
+# --------------------------------
 
 if st.button("Predict"):
     x = {
