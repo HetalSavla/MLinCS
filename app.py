@@ -4,37 +4,93 @@ import joblib
 
 model = joblib.load("stacking_model.pkl")
 
-# ------------------- Modern UI Styles -------------------
+# ------------------- Modern Vibrant UI Styles -------------------
 st.markdown("""
     <style>
         .stApp {
-            background: linear-gradient(135deg, #eef2f3, #8e9eab);
+            background: linear-gradient(135deg, #3a1c71, #d76d77, #ffaf7b);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
         }
+
+        @keyframes gradientBG {
+            0% {background-position: 0% 50%;}
+            50% {background-position: 100% 50%;}
+            100% {background-position: 0% 50%;}
+        }
+
         .input-card {
-            background: rgba(255,255,255,0.6);
+            background: rgba(255,255,255,0.55);
             padding: 25px;
-            border-radius: 18px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-            backdrop-filter: blur(8px);
+            border-radius: 22px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.25);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255,255,255,0.3);
         }
+
         .title {
-            font-size: 42px;
-            font-weight: 700;
+            font-size: 46px;
+            font-weight: 800;
             text-align: center;
-            color: #222;
+            color: #ffffff;
+            text-shadow: 0px 0px 18px rgba(255,255,255,0.8);
             margin-bottom: 15px;
         }
-        .prediction-box {
-            background: #ffffffdd;
-            padding: 22px;
-            border-radius: 16px;
-            font-size: 20px;
-            font-weight: 600;
+
+        .section-title {
+            font-size: 22px;
+            font-weight: 700;
+            padding: 10px 14px;
+            border-radius: 10px;
+            color: white;
+            margin-bottom: 10px;
             text-align: center;
-            border-left: 7px solid #6a11cb;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            margin-top: 15px;
         }
+
+        .easy {
+            background: linear-gradient(135deg, #00c853, #64dd17);
+            box-shadow: 0 0 15px rgba(76, 175, 80, 0.6);
+        }
+
+        .medium {
+            background: linear-gradient(135deg, #2962ff, #448aff);
+            box-shadow: 0 0 15px rgba(33, 150, 243, 0.6);
+        }
+
+        .hard {
+            background: linear-gradient(135deg, #8e24aa, #d500f9);
+            box-shadow: 0 0 15px rgba(156, 39, 176, 0.6);
+        }
+
+        .prediction-box {
+            background: rgba(255,255,255,0.85);
+            padding: 22px;
+            border-radius: 18px;
+            font-size: 22px;
+            font-weight: 700;
+            text-align: center;
+            border-left: 10px solid #ff6f00;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+            margin-top: 18px;
+        }
+
+        .stButton>button {
+            background: linear-gradient(135deg, #ff512f, #f09819);
+            color: white !important;
+            font-size: 20px;
+            font-weight: 700;
+            padding: 12px 25px;
+            border-radius: 12px;
+            border: none;
+            transition: all 0.3s ease;
+        }
+
+        .stButton>button:hover {
+            transform: scale(1.05);
+            background: linear-gradient(135deg, #f09819, #ff512f);
+            box-shadow: 0px 0px 18px rgba(255,255,255,0.8);
+        }
+
     </style>
 """, unsafe_allow_html=True)
 
@@ -48,7 +104,7 @@ col1, col2, col3 = st.columns(3)
 
 # ---------- EASY ----------
 with col1:
-    st.subheader("Easy Level")
+    st.markdown("<div class='section-title easy'>Easy Level</div>", unsafe_allow_html=True)
     total_easy_exercise = st.number_input("Total easy exercise", min_value=0, step=1, key="easy_total")
     completed_easy_exercise = st.number_input("Completed easy exercise", min_value=0, step=1, key="easy_completed")
     easy_exercise_completion_time = st.number_input("Completion time (Easy)", min_value=0, step=1, key="easy_ctime")
@@ -57,7 +113,7 @@ with col1:
 
 # ---------- MEDIUM ----------
 with col2:
-    st.subheader("Medium Level")
+    st.markdown("<div class='section-title medium'>Medium Level</div>", unsafe_allow_html=True)
     total_medium_exercise = st.number_input("Total medium exercise", min_value=0, step=1, key="med_total")
     completed_medium_exercise = st.number_input("Completed medium exercise", min_value=0, step=1, key="med_completed")
     medium_exercise_completion_time = st.number_input("Completion time (Medium)", min_value=0, step=1, key="med_ctime")
@@ -66,7 +122,7 @@ with col2:
 
 # ---------- HARD ----------
 with col3:
-    st.subheader("Hard Level")
+    st.markdown("<div class='section-title hard'>Hard Level</div>", unsafe_allow_html=True)
     total_hard_exercise = st.number_input("Total hard exercise", min_value=0, step=1, key="hard_total")
     completed_hard_exercise = st.number_input("Completed hard exercise", min_value=0, step=1, key="hard_completed")
     hard_exercise_completion_time = st.number_input("Completion time (Hard)", min_value=0, step=1, key="hard_ctime")
