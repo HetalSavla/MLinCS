@@ -47,7 +47,7 @@ st.markdown("""
             border-left: 6px solid #00eaff;
             border-radius: 10px;
             margin-bottom: 15px;
-            color: #fff;
+            # color: #fff;
             font-size: 17px;
             box-shadow: 0 4px 10px rgba(0,0,0,0.3);
         }
@@ -58,7 +58,7 @@ st.markdown("""
             text-align: center;
             font-size: 22px;
             font-weight: 700;
-            color: #00eaff;
+            # color: #00eaff;
             border: 2px solid #00eaff;
             box-shadow: 0 4px 20px rgba(0, 255, 255, 0.4);
         }
@@ -213,5 +213,6 @@ with tab5:
         st.markdown(text, unsafe_allow_html=True)
     else:
         st.info(f"No content file found at `{CONTENT_FILE}` — please place your content there.")
+
 
 
