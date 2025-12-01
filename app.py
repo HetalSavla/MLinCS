@@ -57,11 +57,11 @@ page = st.sidebar.radio(
 # =====================================================================
 if page == "Research Overview":
 
-    st.title("🎓 PhD Research Project – Student Performance Prediction System")
+    st.title("PhD Research Project – Student Performance Prediction System")
     st.subheader("AI-Powered Early Warning Framework for Computer Education")
 
     st.markdown("---")
-    st.header("📘 Research Overview")
+    st.header("Research Overview")
 
     st.write("""
 This PhD research project focuses on predicting student performance in C programming 
@@ -81,14 +81,14 @@ students early — even without academic history.
 
 
     st.markdown("---")
-    st.header("⚠️ The Challenge")
+    st.header("The Challenge")
     st.write("""
 Universities detect struggling students too late.  
 Our system predicts issues weeks earlier — enabling intervention.
 """)
 
     st.markdown("---")
-    st.header("🧠 Machine Learning Models Used")
+    st.header("Machine Learning Models Used")
 
     st.write("""
 - Logistic Regression  
@@ -101,7 +101,7 @@ Our system predicts issues weeks earlier — enabling intervention.
 
     # -------------------- STACKING MODEL PERFORMANCE --------------------
     st.markdown("---")
-    st.subheader("📊 Stacking Model Performance")
+    st.subheader("Stacking Model Performance")
 
     st.markdown("""
 - **Accuracy:** 0.818  
@@ -123,11 +123,11 @@ Our system predicts issues weeks earlier — enabling intervention.
 | **Weighted Avg** | 0.82 | 0.82   | 0.82     | 2438    |
 """)
 
-    st.success("✅ Stacking model trained successfully!")
+    st.success("Stacking model trained successfully!")
 
 
     st.markdown("---")
-    st.header("📊 Machine Learning Evaluation Graphs")
+    st.header("Machine Learning Evaluation Graphs")
 
     import os
     from PIL import Image
@@ -143,16 +143,16 @@ Our system predicts issues weeks earlier — enabling intervention.
     }
 
     for title, path in graph_files.items():
-        st.subheader(f"📌 {title}")
+        st.subheader(f"{title}")
         if os.path.exists(path):
             img = Image.open(path)
             st.image(img, use_container_width=True)
         else:
-            st.error(f"❌ File not found: {path}")
+            st.error(f"File not found: {path}")
 
 
 #     st.markdown("---")
-#     st.header("🎯 Expected Outcome")
+#     st.header("Expected Outcome")
 #     st.write("""
 # - Automatic early alerts  
 # - Improved pass percentage  
@@ -209,7 +209,7 @@ if page == "ML Prediction App":
     # ---------------------------------------------------------
     # PREDICT BUTTON
     # ---------------------------------------------------------
-    predict_btn = st.button("🔮 Predict Performance", use_container_width=True)
+    predict_btn = st.button("Predict Performance", use_container_width=True)
 
     if predict_btn:
 
@@ -257,6 +257,7 @@ if page == "ML Prediction App":
 
         st.markdown(f"<div class='prediction-box'>Prediction: {prediction}</div>", unsafe_allow_html=True)
         st.markdown(f"<div class='prediction-box'>Success Probability: {probability:.2f}</div>", unsafe_allow_html=True)
+
 
 
 
